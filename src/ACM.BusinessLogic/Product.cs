@@ -1,10 +1,9 @@
 ﻿namespace ACM.BusinessLogic
 {
-    public class Product
+    public class Product : EntityBase
     {
         public Product()
         {
-
         }
 
         public Product(int productId)
@@ -17,7 +16,7 @@
         public int ProductId { get; private set; }
         public string ProductName { get; set; }
                
-        public bool Validate()
+        public override bool Validate()
         {
             var isValid = true;
             if (string.IsNullOrWhiteSpace(ProductName))
@@ -31,5 +30,7 @@
 
             return isValid;
         }
+
+        public override string ToString() => ProductName;
     }
 }

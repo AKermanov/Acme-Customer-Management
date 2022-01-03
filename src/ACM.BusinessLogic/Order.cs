@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    public class Order
+    public class Order : EntityBase
     {
         public Order() 
             : this(0)
@@ -20,7 +20,7 @@
         public List<OrderItem> OrderItems { get; set; }
         public int ShippingAddressId { get; set; }
 
-        public bool Validate()
+        public override bool Validate()
         {
             var isValid = true;
             if (OrderDate == null)
@@ -30,5 +30,6 @@
 
             return isValid;
         }
+        public override string ToString() => $"{OrderDate.Value.DateTime} ({OrderId})";
     }
 }

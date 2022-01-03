@@ -1,6 +1,6 @@
 ﻿namespace ACM.BusinessLogic
 {
-    public class OrderItem
+    public class OrderItem : EntityBase
     {
         public OrderItem()
         {
@@ -15,7 +15,7 @@
         public decimal? PurchasePrice { get; set; }
         public int Quantity { get; set; }
                
-        public bool Validate()
+        public override bool Validate()
         {
             var isValid = true;
             if (Quantity <= 0)

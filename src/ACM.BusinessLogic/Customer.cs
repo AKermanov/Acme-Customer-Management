@@ -1,7 +1,7 @@
 ﻿namespace ACM.BusinessLogic
 {
     using System.Collections.Generic;
-    public class Customer
+    public class Customer : EntityBase
     {
         private string _lastName;
 
@@ -47,7 +47,7 @@
             set { _lastName = value; }
         }
 
-        public bool Validate()
+        public override bool Validate()
         {
             var isValid = true;
             if (string.IsNullOrWhiteSpace(LastName))
@@ -61,5 +61,7 @@
 
             return isValid;
         }
+
+        public override string ToString() => FullName;
     }
 }
