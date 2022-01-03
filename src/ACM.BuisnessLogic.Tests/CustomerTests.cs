@@ -2,13 +2,8 @@ namespace ACM.BuisnessLogic.Tests
 {
     using NUnit.Framework;
     using ACM.BusinessLogic;
-    public class CustomerTest
+    public class CustomerTests
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
-
         [Test]
         public void FullNameTestValid()
         {
@@ -74,6 +69,37 @@ namespace ACM.BuisnessLogic.Tests
             Customer.InstanceCount++;
 
             Assert.AreEqual(3, Customer.InstanceCount);
+        }
+
+        [Test]
+        public void ValidateValid()
+        {
+            var customer = new Customer
+            {
+                LastName = "Baggins",
+                EmailAddress = "fbaggins@hobbiton.me"
+            };
+
+            var expected = true;
+
+            var actual = customer.Validate();
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void ValidateMissingLastName()
+        {
+            var customer = new Customer
+            {
+                EmailAddress = "fbaggins@hobbiton.me"
+            };
+
+            var expected = false;
+
+            var actual = customer.Validate();
+
+            Assert.AreEqual(expected, actual);
         }
     }
 }
