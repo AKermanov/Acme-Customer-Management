@@ -1,7 +1,10 @@
 ﻿namespace ACM.BusinessLogic
 {
-    public class Product : EntityBase
+    using Acme.Common;
+    using Acme.Common.Contracts;
+    public class Product : EntityBase, ILoggable
     {
+        private string _productName;
         public Product()
         {
         }
@@ -14,8 +17,20 @@
         public decimal? CurrentPrice { get; set; }
         public string ProductDescription { get; set; }
         public int ProductId { get; private set; }
-        public string ProductName { get; set; }
-               
+        public string ProductName
+        {
+            get
+            {
+                return _productName.InsertSpaces();
+            }
+            set
+            {
+                _productName = value;
+            }
+        }
+
+        public string Log() => $"{ProductId}: {ProductName} Detail: {ProductDescription} Status: {EntityState}";
+
         public override bool Validate()
         {
             var isValid = true;

@@ -1,7 +1,8 @@
 ﻿namespace ACM.BusinessLogic
 {
+    using Acme.Common.Contracts;
     using System.Collections.Generic;
-    public class Customer : EntityBase
+    public class Customer : EntityBase, ILoggable
     {
         private string _lastName;
 
@@ -46,6 +47,8 @@
             get { return _lastName; }
             set { _lastName = value; }
         }
+        public string Log() =>
+      $"{CustomerId}: {FullName} Email: {EmailAddress} Status: {EntityState.ToString()}";
 
         public override bool Validate()
         {
